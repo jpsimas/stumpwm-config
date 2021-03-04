@@ -1,6 +1,7 @@
 ;;; utils.lisp --- Additional variables, functions and commands
 
 ;; Copyright © 2013–2019 Alex Kost <alezost@gmail.com>
+;; Copyright © 2021 João Pedro de O. Simas <jpsimas@gmail.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -328,7 +329,8 @@ beginning with ':') where a service is started."
 
 (defcommand al/emacs () ()
   "Start emacs unless it is already running, in which case focus it."
-  (run-or-raise (al/herd-command "emacs")
+  (run-or-raise ;;(al/herd-command "emacsd")
+		"emacsclient -c --alternate-editor=\"emacs\""
                 '(:class "Emacs")))
 
 (defcommand al/emacs-eval (arg &optional server-name) ((:shell "emacs-eval: "))
