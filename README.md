@@ -69,9 +69,3 @@ My time message (`time` command customized with
   contributed stumpwm module.
 
 - `unused` directory contains some old and unused code.
-
-## Feedback
-
-I am not an expert in Lisp, I just like StumpWM a lot, so if you find
-errors or if you see that something can be implemented better, you may
-send me a message about that.
