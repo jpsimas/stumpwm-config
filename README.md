@@ -1,4 +1,12 @@
 ## About
+My configuration for
+[StumpWM](https://github.com/stumpwm/stumpwm). This is effectively
+alezost's configuration with a few minor changes, so if you are
+looking for config files to use as a base for your own configuration
+please take look at the original repo
+(https://github.com/alezost/stumpwm-config) first.
+
+## About (Original)
 
 My configuration for [StumpWM](https://github.com/stumpwm/stumpwm).  I
 separate my settings into several files instead of using a single
