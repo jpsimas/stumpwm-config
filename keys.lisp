@@ -1,6 +1,7 @@
 ;;; keys.lisp --- Key bindings (Dvorak layout)
 
 ;; Copyright © 2013–2019 Alex Kost <alezost@gmail.com>
+;; Copyright © 2021 João Pedro de O. Simas <jpsimas@gmail.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -19,7 +20,7 @@
 
 (in-package :stumpwm)
 
-(set-prefix-key (kbd "s-t"))
+(set-prefix-key (kbd "s-x"))
 
 
 ;;; Functional/additional keys (placed on the same keys)
@@ -83,7 +84,15 @@ additional key."
 (al/define-key *tile-group-root-map* "s-f" "fullscreen")
 (al/define-key *tile-group-top-map* "s-z" "hsplit")
 (al/define-key *tile-group-top-map* "M-s-z" "vsplit")
-(al/define-key *tile-group-top-map* "s-x" "only")
+;; (al/define-key *tile-group-top-map* "s-x" "only")
+
+;; Emacs-like splitting keybindings
+(al/define-key *root-map* "3" "hsplit")
+(al/define-key *root-map* "2" "hsplit")
+(al/define-key *root-map* "0" "remove-split")
+
+;; Suspend (probably should define a function for this)
+(al/define-key *root-map* "C-s" "exec i3lock-fancy && loginctl suspend")
 
 ;;; Focusing windows
 
