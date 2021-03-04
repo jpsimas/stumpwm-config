@@ -76,4 +76,7 @@ instead of any error."
 (al/load "settings")
 (al/load "visual")
 
+;; start shepherd
+(run-shell-command "shepherd  > /dev/null 2>&1 &")
+
 ;;; init.lisp ends here
