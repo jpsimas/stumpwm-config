@@ -1,6 +1,7 @@
 ;;; visual.lisp --- Visual appearance: colors, fonts, mode line, ...
 
 ;; Copyright © 2013–2016, 2018–2019 Alex Kost <alezost@gmail.com>
+;; Copyright © 2021 João Pedro de O. Simas <jpsimas@gmail.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -130,17 +131,18 @@
       ""))
 
 
-;;; mode-line keyboard
+;;; mode-line keyboard (needs CLX (cl-clx on guix repo) package for xlib interface)
 
-(defun al/ml-locks ()
-  (defun bool->color (bool)
-    (if bool "^B^2" ""))
-  (let ((mods (xlib:device-state-locked-mods
-               (xlib:get-state *display*))))
-    (al/ml-separate
-     (format nil "^[~ACaps^] ^[~ANum^]"
-             (bool->color (al/mod-lock-state +caps-lock+ mods))
-             (bool->color (al/mod-lock-state +num-lock+ mods))))))
+;; TEMP DISABLED
+;; (defun al/ml-locks ()
+;;   (defun bool->color (bool)
+;;     (if bool "^B^2" ""))
+;;   (let ((mods (xlib:device-state-locked-mods
+;;                (xlib:get-state *display*))))
+;;     (al/ml-separate
+;;      (format nil "^[~ACaps^] ^[~ANum^]"
+;;              (bool->color (al/mod-lock-state +caps-lock+ mods))
+;;              (bool->color (al/mod-lock-state +num-lock+ mods))))))
 
 (defun al/ml-layout ()
   (al/ml-separate

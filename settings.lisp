@@ -1,6 +1,7 @@
 ;;; settings.lisp --- General settings: variables, hooks, ...
 
 ;; Copyright © 2013–2019 Alex Kost <alezost@gmail.com>
+;; Copyright © 2021 João Pedro de O. Simas <jpsimas@gmail.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,15 +25,15 @@
 
 ;; Name the default group.
 (setf (group-name (car (screen-groups (current-screen))))
-      "tile1")
-(gnewbg "tile2")
+      "Tile1")
+(gnewbg "Tile2")
 (gnewbg-float "float")
 
 (set-normal-gravity :bottom)
 
 (setf
- *message-window-gravity* :bottom-right
- *input-window-gravity* :center
+ *message-window-gravity* :top-right
+ *input-window-gravity* :top-right
  *mouse-focus-policy* :click)
 
 (defvar al/frames1 nil)
@@ -72,11 +73,14 @@
 
 ;; This is needed because stumpwm opens display before extension
 ;; definition.
-(xlib::initialize-extensions *display*)
-(xlib:enable-xkeyboard *display*)
 
-(al/set-display-layout 0)
-(al/enable-per-window-layout)
+;;NOTE: Disabled temporarily, until xlib in installed
+
+;;(xlib::initialize-extensions *display*)
+;;(xlib:enable-xkeyboard *display*)
+
+;;(al/set-display-layout 0)
+;;(al/enable-per-window-layout)
 
 
 ;;; Message after a part of key sequence
