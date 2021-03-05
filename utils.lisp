@@ -157,18 +157,29 @@ Return the window or nil if there is no such."
                (switch-to-group group))
         (echo "There is only one group."))))
 
+;; (defcommand (al/fother tile-group) () ()
+;;   "Jump to the previously selected frame.
+;; This is a substitution for `fother': the problem with `fother' is that
+;; it does nothing if the last frame does not exist anymore.  This command
+;; simply moves the focus to the next existing frame."
+;;   (let* ((group      (current-group))
+;;          (frames     (group-frames group))
+;;          (last-frame (tile-group-last-frame group)))
+;;     (if (and last-frame
+;;              (find last-frame frames))
+;;         (focus-frame group last-frame)
+;;         (focus-frame-after group frames))))
+
 (defcommand (al/fother tile-group) () ()
-  "Jump to the previously selected frame.
-This is a substitution for `fother': the problem with `fother' is that
-it does nothing if the last frame does not exist anymore.  This command
-simply moves the focus to the next existing frame."
+  "Jump to other frame if there are 2 or less frames, else show
+numbers  so the user can select them using the number keys. Much like
+  Emacs' ace-window package."
   (let* ((group      (current-group))
          (frames     (group-frames group))
          (last-frame (tile-group-last-frame group)))
-    (if (and last-frame
-             (find last-frame frames))
-        (focus-frame group last-frame)
-        (focus-frame-after group frames))))
+    (if (<= (length frames) 2)
+        (fnext)
+        (run-commands "fselect"))))
 
 (defun al/set-frames (frames &optional (populatep t))
   "Display FRAMES in the current group.
