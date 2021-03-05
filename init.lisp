@@ -36,6 +36,9 @@
 ;; swank (emacs SLIME/stumpwm interaction) (requires sbcl-slime-swank)
 (load "~/.guix-profile/share/emacs/site-lisp/swank.asd")
 (require :swank)
+(swank:create-server :port 4005
+                     :style swank:*communication-style*
+                     :dont-close t)
 
 
 ;;; Loading additional rc files
