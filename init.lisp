@@ -1,6 +1,7 @@
 ;;; init.lisp --- Vital settings and loading other files
 
 ;; Copyright © 2013–2016, 2018–2019 Alex Kost <alezost@gmail.com>
+;; Copyright © 2021 João Pedro de O. Simas <jpsimas@gmail.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -32,9 +33,9 @@
         0))
   "The number of the current DISPLAY.")
 
-(swank:create-server
- :dont-close t
- :port (+ swank::default-server-port al/display-number))
+;; swank (emacs SLIME/stumpwm interaction) (requires sbcl-slime-swank)
+(load "~/.guix-profile/share/emacs/site-lisp/swank.asd")
+(require :swank)
 
 
 ;;; Loading additional rc files
@@ -42,7 +43,7 @@
 (defvar al/init-directory
   (directory-namestring
    (truename (merge-pathnames (user-homedir-pathname)
-                              ".stumpwmrc")))
+                              ".stumpwm.d")))
   "A directory with initially loaded files.")
 
 (defun al/load (filename)
@@ -71,12 +72,15 @@ instead of any error."
 
 (al/load "keys")
 (al/load "utils")
-(al/load "xkb")
+;;(al/load "xkb")
 (al/load "sound")
 (al/load "settings")
 (al/load "visual")
 
 ;; start shepherd
-(run-shell-command "shepherd  > /dev/null 2>&1 &")
+;; (run-shell-command "shepherd  > /dev/null 2>&1 &")
+
+;; set keyboard layout to us intl (find better solution later)
+(run-shell-command "setxkbmap -layout us -variant intl")
 
 ;;; init.lisp ends here
